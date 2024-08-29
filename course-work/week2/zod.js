@@ -21,7 +21,7 @@ app.post("/health", function(req,res){
         })
     } else {
         res.json({
-            msg:(response)
+            msg:response
         })
     }
 })
