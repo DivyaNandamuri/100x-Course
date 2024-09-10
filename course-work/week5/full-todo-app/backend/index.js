@@ -12,7 +12,6 @@ app.use(cors());
 
 app.get("/todos", async function(req,res) {
     const todos = await todo.find({})
-    console.log(todos)
     res.json({
         todos
     })
@@ -22,7 +21,6 @@ app.get("/todos", async function(req,res) {
 app.post("/todo", async function(req,res) {
     const payload = req.body;
     const parsePayload = createTodo.safeParse(payload);
-    console.log("inside todo")
     if(!parsePayload.success){
         res.status(404).json({
             msg: "You have sent the wrong inputs"
@@ -30,7 +28,6 @@ app.post("/todo", async function(req,res) {
         return
     }
 //put in DB
-    console.log( payload.title,payload.description)
     await todo.create({
         title: payload.title,
         description: payload.description,
