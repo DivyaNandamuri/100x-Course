@@ -3,6 +3,7 @@ import {MarkComplete} from "./MarkComplete";
 
 export function Todos({todos}){
     const [status,setStatus] = useState(false);
+   
     return <div>
             { todos.map(function(todo){
                 return <div>
@@ -11,14 +12,19 @@ export function Todos({todos}){
                             <button onClick={() =>{
                                 fetch("http://localhost:3000/completed",{
                                     method:'PUT',
+                                    body: JSON.stringify({
+                                       _id:todo._id
+                                    }),
                                     headers:{
                                         "content-type": "application/json"
                                     }}).then(async function(res){
                                         const json = res.json();
-                                        setStatus(true);
                                         alert("Mark complete");
                                     })
-                                    {setStatus(false)}}}><MarkComplete status={status}></MarkComplete>
+                                    }}>
+                                 <div>
+                                    {todo.completed==true ? 'Done': 'Mark as complete'}
+                                </div>
                             </button>
                         </div>
             })}

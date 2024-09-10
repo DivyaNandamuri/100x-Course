@@ -12,7 +12,8 @@ export function CreateTodo() {
                 setDescription(e.target.value);
                 }}></input><br />
             <button onClick={()=> {
-                fetch("localhost:3000/todo",{
+                console.log("click")
+                fetch("http://localhost:3000/todo",{
                     method: "POST",
                     headers:{
                         "content-type": "application/json"
