@@ -1,30 +1,18 @@
 import Image from "next/image";
 import localFont from "next/font/local";
 import { VideoCard } from "@/components/VideoCard";
+import { VideoGrid } from "@/components/VideoGrid";
+import { AppBar, SignIn } from "@/components/AppBar";
+import { Inter } from 'next/font/google';
+import { SearchBar } from "@/components/SearchBar";
 
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
+const inter = Inter({subsets: ['latin']})
 export default function Home() {
   return (  
     <div>
-      <VideoCard 
-      image={"/photo.png"} 
-      thumb={"logo.png"} 
-      title={"Machine Learning"} 
-      name={"Divya"} 
-      views={"42M"} 
-      days={"12 Days"}/>
+      <AppBar></AppBar>
+      <VideoGrid></VideoGrid>
     </div>
     
-  );
+  )
 }
