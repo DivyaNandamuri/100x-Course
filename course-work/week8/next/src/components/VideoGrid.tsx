@@ -25,11 +25,11 @@ const Videos = [{
     days:"10 Days"
 },{ key:4,
     title: "Introduction to ML",
-name:"Divya",
-image:"photo.png",
-thumbimage: "logo.png",
-views:"10M",    
-days:"10 Days"
+    name:"Divya",
+    image:"photo.png",
+    thumbimage: "logo.png",
+    views:"10M",    
+    days:"10 Days"
 },{ key:5,
     title: "Introduction to ML",
     name:"Divya",
@@ -60,6 +60,7 @@ days:"10 Days"
     days:"10 Days"
 }]
 
+// setting channel details to Videocard
 export const VideoGrid = () => {
     return <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {Videos.map(video => <div>
