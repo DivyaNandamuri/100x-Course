@@ -24,7 +24,7 @@ function App() {
 
 
 function Appbar() {
-  //naviage hook should be in acomponent which is inside the BrowserRouter
+  //naviage hook should be in a component which is inside the BrowserRouter
   const navigate = useNavigate();
 
   return <div>
