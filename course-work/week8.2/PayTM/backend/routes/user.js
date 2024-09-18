@@ -1,7 +1,7 @@
 const express= require("express")
 const router = express.Router();
 const z = require("zod")
-const User = require("../db")
+const {User, Accounts} = require("../db")
 const jwt = require("jsonwebtoken")
 const JWT_SECRET = require("../config")
 const auth = require("../middleware")
@@ -35,6 +35,9 @@ router.post("/signup",async (req,res) => {
         })
     }
 
+    //generate random balance and save it in Account collection
+    const balance = 1+Math.random()*10000
+    
     //create new user in db
     const newuser = await User.create({
         username: req.body.username,
@@ -43,6 +46,10 @@ router.post("/signup",async (req,res) => {
         lastName: req.body.lastName
     });
 
+    await Accounts.create({
+        userId: newuser._id,
+        balance: balance
+    })
     // generate a jwt token for the user
     const token = jwt.sign({
         userId: newuser._id
@@ -122,9 +129,9 @@ router.put("/",auth,async (req,res) => {
     
 })
 
+//get the user details using fName or lName
 router.get("/bulk", async (req,res) => {
     const filter = req.query.filter || "";
-    //get the user details using fName or lName
     const userDetails = await User.find({
         $or: [
             { firstName: { $regex: filter, $options: 'i' } }, // 'i' for case-insensitive
