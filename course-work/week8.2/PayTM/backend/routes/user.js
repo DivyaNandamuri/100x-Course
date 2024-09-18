@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken")
 const JWT_SECRET = require("../config")
 const auth = require("../middleware")
 
-
 //zod schema for input validation
 const signupSchema = z.object({
     username: z.string().email(),
@@ -121,6 +120,24 @@ router.put("/",auth,async (req,res) => {
         message:"Invalid data entered"
     })
     
+})
+
+router.get("/bulk", async (req,res) => {
+    const filter = req.query.filter || "";
+    //get the user details using fName or lName
+    const userDetails = await User.find({
+        $or: [
+            { firstName: { $regex: filter, $options: 'i' } }, // 'i' for case-insensitive
+            { lastName: { $regex: filter, $options: 'i' } }
+          ]
+    })
+    return res.json({
+        users: userDetails.map((users) =>({
+            firstName: users.firstName,
+            lastName: users.lastName,
+            _id: users._id
+        }))  
+    })
 })
 
 module.exports = router;
