@@ -15,6 +15,7 @@ function App() {
     <BrowserRouter>
     <Appbar></Appbar>
       <Routes>
+        {/* React.lazy with Suspense to load a component only when it's needed, suspense is used to loading the component */}
         <Route path="/" element={<Suspense fallback={<div>Loading...</div>}><Dashboard /></Suspense>} />
         <Route path="/landingpage" element={<Suspense fallback={<div>Loading....</div>}><Landingpage></Landingpage></Suspense>}></Route>
       </Routes>
