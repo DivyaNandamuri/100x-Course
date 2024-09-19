@@ -18,7 +18,7 @@ export function Todos({todos}){
                                     headers:{
                                         "content-type": "application/json"
                                     }}).then(async function(res){
-                                        const json = res.json();
+                                        const json = await res.json();
                                         alert("Mark complete");
                                     })
                                     }}>
