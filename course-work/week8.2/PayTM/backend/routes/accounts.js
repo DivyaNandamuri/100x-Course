@@ -3,6 +3,8 @@ const router = express.Router();
 const {User, Accounts} = require('../db')
 const auth = require('../middleware')
 
+
+//get the balance of an user
 router.get("/balance",auth,async (req,res)=>{
     const userId = req.userId;
     const user = await Accounts.findOne({
@@ -13,11 +15,12 @@ router.get("/balance",auth,async (req,res)=>{
     })
 })
 
+//transfer the money to another user 
 router.post("/transfer",auth,async (req,res)=>{
     const name = req.body.to;
     const amount = req.body.amount;
     const userId = req.userId
-    //get the account details of the sender user
+    //get the account details of the sender
     const user = await Accounts.findOne({
         userId:userId
     })

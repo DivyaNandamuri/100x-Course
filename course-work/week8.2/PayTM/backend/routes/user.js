@@ -35,7 +35,7 @@ router.post("/signup",async (req,res) => {
         })
     }
 
-    //generate random balance and save it in Account collection
+    //generate random balance and save it in Accounts collection
     const balance = 1+Math.random()*10000
     
     //create new user in db
@@ -100,6 +100,7 @@ router.post("/signin",async (req,res)=>{
     })
 })
 
+//input validation using ZOD
 const updateInput = z.object({
     password: z.string(),
     firstName: z.string(),
