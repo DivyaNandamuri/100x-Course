@@ -143,7 +143,8 @@ router.get("/bulk", async (req,res) => {
         users: userDetails.map((users) =>({
             firstName: users.firstName,
             lastName: users.lastName,
-            _id: users._id
+            _id: users._id,
+            username: users.username
         }))  
     })
 })
@@ -151,7 +152,7 @@ router.get("/bulk", async (req,res) => {
 module.exports = router;
 
 //get all users
-router.get("/all",auth,async (req,res) =>{
+router.get("/allusers",auth,async (req,res) =>{
     const userDetails = await User.find({})
     return res.json({
         userDetails
