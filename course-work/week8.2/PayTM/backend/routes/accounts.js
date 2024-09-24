@@ -17,7 +17,6 @@ router.get("/balance",auth,async (req,res)=>{
 
 //transfer the money to another user 
 router.post("/transfer",auth,async (req,res)=>{
-    console.log(req.dody)
     const username = req.body.username;
     const amount = req.body.amount;
     const userId = req.userId

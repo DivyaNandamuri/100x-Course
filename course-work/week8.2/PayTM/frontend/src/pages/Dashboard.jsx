@@ -4,6 +4,7 @@ import {Balance} from "../components/Balance"
 import { Searchbar } from "../components/Searchbar"
 import axios from "axios"
 import {Users} from "../components/Users"
+import {useNavigate} from "react-router-dom"
 
 export function Dashboard() {
     const [value,setValue] = useState(null);
@@ -13,7 +14,8 @@ export function Dashboard() {
     const [filter, setFilter] = useState('')
     const [filteredData, setFilteredData] = useState([])
     const [showDetails, setShowDetails] = useState(false)
-
+    const navigate = useNavigate();
+    
     useEffect(() => {
         const fetchData = async () =>{
         try {
@@ -51,7 +53,9 @@ export function Dashboard() {
         if (error) return <div>{error}</div>;
         
     return <div>
-        <Appbar label={"Payments App"} message={"Hello, User"} />
+        <Appbar label={"Payments App"} message={"Hello, User"} onClick={()=>{
+            navigate("/signin");
+        }}/>
         <Balance label={"Your Balance $"} value={value}></Balance>
         <Searchbar label={"Users"} onChange={(e)=> {
             setFilter(e.target.value)

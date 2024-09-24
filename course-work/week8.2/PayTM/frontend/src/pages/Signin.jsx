@@ -20,18 +20,24 @@ function Signin() {
             <InputBox onChange={(e) =>{
                 setUserName(e.target.value)
             }} label={"Email"} placeholder={"johndoe@example.com"} />
-            <InputBox onChange={(e) => {
+            <label className="flex text-sm font-medium py-2">Password</label>
+            <input type="password" className="w-full px-2 py-1 border rounded border-slate-200 size-10" onChange={(e) => {
                 setPassword(e.target.value)
-            }} label={"Password"} />
+            }}></input>
             </div>
             <div className="pt-4">
             <Button onClick={async () => {
+            try {
                const response = await axios.post("http://localhost:3000/api/v1/user/signin", {
                 username,
                 password
               });
               localStorage.setItem("token", response.data.token)
+              
               navigate("/dashboard")
+            } catch(err) {
+                alert("Invalid credentials")
+            }
             }} label={"Sign In"} />
             </div>
             <ButtonMessage label={"Don't have an account?"} buttonText={"Sign Up"} to={"/signup"} />
