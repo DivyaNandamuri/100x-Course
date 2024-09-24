@@ -17,7 +17,8 @@ router.get("/balance",auth,async (req,res)=>{
 
 //transfer the money to another user 
 router.post("/transfer",auth,async (req,res)=>{
-    const name = req.body.to;
+    console.log(req.dody)
+    const username = req.body.username;
     const amount = req.body.amount;
     const userId = req.userId
     //get the account details of the sender
@@ -33,10 +34,11 @@ router.post("/transfer",auth,async (req,res)=>{
     }
     // find the reciever ID from the name
     const to = await User.findOne({
-        $or: [
-            {firstName: {$regex: name, $options: 'i'}},
-            {lastName: {$regex: name, $options:'i'}}
-        ]
+        // $or: [
+        //     {firstName: {$regex: name, $options: 'i'}},
+        //     {lastName: {$regex: name, $options:'i'}}
+        // ]
+        username:username
     })
     if(!to){
         return res.status(401).json({
@@ -59,7 +61,8 @@ router.post("/transfer",auth,async (req,res)=>{
     const updatedbal = await Accounts.findOneAndUpdate({userId: userId},{ $inc: { balance: -amount } },{new:true})
     console.log("sender updated balance",updatedbal) 
     //updating reciever balance
-    const updatedtobal = await Accounts.findOneAndUpdate({userId: touser},{balance: user2account.balance + amount},{new:true})
+    // const updatedtobal = await Accounts.findOneAndUpdate({userId: touser},{balance: user2account.balance + amount},{new:true})
+    const updatedtobal = await Accounts.findOneAndUpdate({_id: user2account._id},{$inc:{balance: +amount}},{new:true})
     console.log("reciever updated balance",updatedtobal) 
     return res.json({
         message: "Transfer successful"

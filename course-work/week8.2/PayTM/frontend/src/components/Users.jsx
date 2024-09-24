@@ -8,8 +8,8 @@ export function Users({label}) {
         {label.map(function(user) {
             return <div key={user._id}>
                 <h2>{user.username}</h2>
-                <Button label={"Send Money"} onClick={() =>{
-                    navigate("/send")
+                <Button label={"Send Money"} onClick={() => {
+                    navigate('/send', {state: {username: user.username}})
                 }} />
                 </div>
         })}

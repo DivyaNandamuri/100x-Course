@@ -1,5 +1,5 @@
 export function Appbar({label, message}) {
-    return <div className="flex shadow h-14 justify-between p-10">
+    return <div className="flex shadow h14 justify-between p-10">
        <div className="text-left font-bold text-3xl" >{label}</div>
        <div className="flex">
     <div className="flex flex-col justify-center h-full mr-4" >{message}</div>
