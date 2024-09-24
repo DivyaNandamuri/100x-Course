@@ -150,3 +150,10 @@ router.get("/bulk", async (req,res) => {
 
 module.exports = router;
 
+//get all users
+router.get("/all",auth,async (req,res) =>{
+    const userDetails = await User.find({})
+    return res.json({
+        userDetails
+    })
+})
