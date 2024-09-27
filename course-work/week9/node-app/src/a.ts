@@ -7,7 +7,7 @@ interface User{
 
 //passing interface as type
 function isLegal(user: User) {
-    if(user.age>21){
+    if(user.age>18){
         return true;
     }
     return false;
