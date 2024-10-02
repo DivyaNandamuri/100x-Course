@@ -1,12 +1,9 @@
-
+//interface type
 interface Todos{
     task: string,
     details: string
 }
 
-// interface TodoInput{
-//     to:Todos
-// }
 export function Todo({task,details}: Todos){
     return <div>
         <h2>{task}</h2>
