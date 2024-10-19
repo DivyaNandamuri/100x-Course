@@ -8,6 +8,12 @@
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
     <body>
+        <script>
+        Alpine.store('tabs', {
+            current: 'first',
+         
+            items: ['first', 'second', 'third'],
+        })</script>    
         <div x-data="{ open: false }">
             <button @click="open = !open">Toggle</button>
         
@@ -29,10 +35,24 @@
         <input x-model="search" placeholder="Search...">
     
         <ul>
-            <template x-for="item in filteredItems" :key="item">
+            <template x-for="item in filteredItems">
                 <li x-text="item"></li>
             </template>
         </ul>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div x-data>
+            <template x-for="tab in $store.tabs.items">
+                
+            </template>
+        </div>
+         
+        <div x-data>
+            <button @click="$store.tabs.current = 'first'">First Tab</button>
+            <button @click="$store.tabs.current = 'second'">Second Tab</button>
+            <button @click="$store.tabs.current = 'third'">Third Tab</button>
         </div>
     </body>
 </html>

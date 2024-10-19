@@ -1,0 +1,36 @@
+<html>
+<head>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('tabs', {
+            current: 'first',
+            state: false,
+            items: ['first', 'second', 'third'],
+            toggle() {
+                
+                 this.state = !this.state
+            }
+            })
+        })
+    </script>
+</head>
+<body>
+    <div x-data>
+    <button @click="$store.tabs.toggle()">Toggle</button>
+    <template x-for="item in $store.tabs.items">
+            <ul>
+                <li x-text="item" ></li>
+            </ul>
+    </template>
+    </div>
+    <div x-data x-effect="console.log($store.tabs.current)"x-show="$store.tabs.state"   >
+        <button @click="$store.tabs.current = 'first'">First Tab</button>
+    
+        <button @click="$store.tabs.current = 'second'">Second Tab</button>
+        <button @click="$store.tabs.current = 'third'">Third Tab</button>
+        <div >
+        </div>
+    </div>
+</body>
+</html>
