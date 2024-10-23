@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!-- model used for binding input with the alpine data -->
+<html lang="en">
+    <head>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    </head>
+    <body>
+        <div x-data="{message: ''}">
+            <input type="text" placeholder="Type message" x-model="message">
+            <br>
+            <span x-text="message"></span>
+            <br>
+            <br>
+            <button @click="message = 'message changed'">Change</button>
+        </div>
+    </body>
+</html>

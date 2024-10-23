@@ -1,6 +1,7 @@
 <html>
 <head>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <!-- for store registration use alpine:init with script tags or import alpine -->
     <script>
         document.addEventListener('alpine:init', () => {
@@ -15,11 +16,12 @@
             })
         })
     </script>
+    <title>Alpine Store</title>
 </head>
 <body>
     <!-- toggle to change the state to true -->
     <div x-data>
-    <button @click="$store.tabs.toggle()" @click.outside="$store.tabs.state=false">Toggle</button>
+    <button @click="$store.tabs.toggle()">Toggle</button>
     <template x-for="item in $store.tabs.items">
             <ul>
                 <li x-text="item" ></li>
@@ -27,7 +29,7 @@
     </template>
     </div>
     <!-- show below buttons only when state is true (i.e; toggle is clicked) -->
-    <div x-data x-effect="console.log($store.tabs.current)"x-show="$store.tabs.state">
+    <div x-data x-effect="console.log($store.tabs.current)" x-show="$store.tabs.state" @click.outside="$store.tabs.state=false" >
         <button @click="$store.tabs.current = 'first'">First Tab</button>
         <button @click="$store.tabs.current = 'second'">Second Tab</button>
         <button @click="$store.tabs.current = 'third'">Third Tab</button>
